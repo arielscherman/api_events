@@ -1,4 +1,5 @@
 require "api_events/version"
+require "api_events/event"
 require "api_events/model"
 require "active_record"
 
