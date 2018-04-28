@@ -11,7 +11,7 @@ module ApiEvents
 
       def setup_broadcast(options = {})
         @model_class.class_attribute :broadcast_events
-        @model_class.broadcast_events = Array.wrap(options[:on]).presence || %i(created updated deleted)
+        @model_class.broadcast_events = [options[:on]].flatten.compact.presence || %i(created updated deleted)
       end
     end
   end
