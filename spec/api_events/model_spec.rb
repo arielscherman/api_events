@@ -12,22 +12,28 @@ RSpec.describe ApiEvents::Model do
   end
 
   it "arguments are sent to the config" do
-    expect_any_instance_of(ApiEvents::Model::Config).to receive(:setup).with(fummy: :bar)
+    expect_any_instance_of(ApiEvents::Model::Config).to receive(:setup).with(dummy: :bar)
 
     class DummyModel
-      broadcast fummy: :bar
+      broadcast dummy: :bar
     end
   end
 
   describe "#broadcast_event!" do
     it "triggers the event" do
-      fummy      = DummyModel.new
+      dummy      = DummyModel.new
       event_stub = double()
 
-      expect(ApiEvents::Event).to receive(:new).with(fummy, :some_event).and_return(event_stub)
+      expect(ApiEvents::Event).to receive(:new).with(dummy, :some_event).and_return(event_stub)
       expect(event_stub).to       receive(:trigger!)
 
-      fummy.broadcast_event!(:some_event)
+      dummy.broadcast_event!(:some_event)
+    end
+  end
+
+  describe "#event_name" do
+    it "returns the class name and the event" do
+      expect(DummyModel.new.event_name(:updated)).to eq "dummy_model_updated"
     end
   end
 end

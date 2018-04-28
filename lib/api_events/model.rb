@@ -21,6 +21,18 @@ module ApiEvents
       def broadcast_event!(event)
         ApiEvents::Event.new(self, event).trigger!
       end
+
+      # Build the event name that will be broadcasted to other apps.
+      # This should be overrided if needed.
+      #
+      # @example Build a name for your Invoice model
+      #   invoice.event_name(:created) => "invoice_created"
+      #
+      # @param [String] event the event to build the name from.
+      # @return [String] the event name to broadcast
+      def event_name(event)
+        "#{self.class.name.underscore}_#{event}"
+      end
     end
   end
 end
