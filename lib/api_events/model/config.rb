@@ -1,8 +1,6 @@
-# This class is responsible of loading the class attributes required by our gem, and adding the callbacks
-# on the AR model too.
-#
 module ApiEvents
   module Model
+    # This class is responsible of loading the class attributes required by our gem, and adding the callbacks on the AR model too.
     class Config
       EVENT_CALLBACKS = { 
         created:   :after_create,
@@ -14,6 +12,10 @@ module ApiEvents
         @model_class = model_class
       end
 
+      # Setup callbacks and required side methods to broadcast events on AR callbacks.
+      #
+      # @param [Hash] options the options to define the events.
+      # @option options [Array, Symbol] :on ([:created, :updated, :destroyed]) events to broadcast
       def setup(options = {})
         setup_events(options)
         setup_broadcast
@@ -31,7 +33,7 @@ module ApiEvents
 
       def add_callback_to_model(event)
         @model_class.send(callback_for_event(event)) do |record|
-          ApiEvents::Event.new(record, event).trigger!
+          record.broadcast_event!(event)
         end 
       end
 

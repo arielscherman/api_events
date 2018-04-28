@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  spec.metadata["yard.run"] = "yard"
 
   spec.add_dependency "activerecord", [">= 4.2", "< 5.3"]
 
@@ -36,4 +37,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "pry"
+  spec.add_development_dependency "sqlite3"
 end
