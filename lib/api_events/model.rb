@@ -19,7 +19,7 @@ module ApiEvents
 
     module InstanceMethods
       def broadcast_event!(event)
-        ApiEvents::Event.new(self, event).trigger!
+        ApiEvents::Event.new(self, event).broadcast!
       end
 
       # Build the event name that will be broadcasted to other apps.

@@ -5,8 +5,14 @@ module ApiEvents
       @event  = event
     end
 
-    def trigger!
+    def broadcast!
       binding.pry
+    end
+
+    private
+
+    def event_name
+      @event_name ||= record.event_name(@event)
     end
   end
 end

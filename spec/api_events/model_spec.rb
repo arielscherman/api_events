@@ -25,7 +25,7 @@ RSpec.describe ApiEvents::Model do
       event_stub = double()
 
       expect(ApiEvents::Event).to receive(:new).with(dummy, :some_event).and_return(event_stub)
-      expect(event_stub).to       receive(:trigger!)
+      expect(event_stub).to       receive(:broadcast!)
 
       dummy.broadcast_event!(:some_event)
     end
