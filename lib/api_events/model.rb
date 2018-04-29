@@ -33,6 +33,16 @@ module ApiEvents
       def event_name(event)
         "#{self.class.name.underscore}_#{event}"
       end
+
+      # Build the json that will be sent with the event as a payload.
+      # This will be received by other apps when they receive the event 
+      # notification.
+      # This should be overrided if needed.
+      #
+      # @return [Hash] the json to include in the request
+      def json_payload
+        self.as_json
+      end
     end
   end
 end

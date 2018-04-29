@@ -36,4 +36,12 @@ RSpec.describe ApiEvents::Model do
       expect(DummyModel.new.event_name(:updated)).to eq "dummy_model_updated"
     end
   end
+
+  describe "#json_payload" do
+    it "returns the #as_json as default" do
+      dummy = DummyModel.new
+      expect(dummy).to receive(:as_json)
+      dummy.json_payload
+    end
+  end
 end
