@@ -4,6 +4,7 @@ require "api_events/event"
 require "api_events/model"
 require "api_events/request"
 
+require "rails"
 require "active_record"
 
 begin
@@ -12,6 +13,9 @@ rescue LoadError
 end
 
 module ApiEvents
+  class Engine < Rails::Engine
+  end
+
   class << self
     attr_writer :configuration
   end
