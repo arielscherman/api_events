@@ -9,7 +9,8 @@ module ApiEvents
 
     def broadcast!
       # TODO: we should send a request to each listener.
-      ApiEvents::Request.new(event_name, record.json_payload).trigger!(endpoints: "http://localhost:3000/")
+      endpoints = ApiEvents.configuration.listeners
+      ApiEvents::Request.new(event_name, record.json_payload).trigger!(endpoints: endpoints)
     end
 
     private
