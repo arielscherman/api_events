@@ -10,7 +10,7 @@ RSpec.describe ApiEvents::Request do
       @request.trigger!(urls: "some_endpoint")
     end
 
-    it "allos to trigger the request to multiple endpoints" do
+    it "allows to trigger the request to multiple endpoints" do
       expect(described_class).to receive(:post).with("endpoint_1/api/events", body: @params)
       expect(described_class).to receive(:post).with("endpoint_2/api/events", body: @params)
 
