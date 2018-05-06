@@ -10,7 +10,7 @@ module ApiEvents
     end
 
     def broadcast!
-      ApiEvents::Request.new(event_name, record.json_payload).trigger!(endpoints: endpoints)
+      ApiEvents::Request.new(event_name, record.json_payload).trigger!(urls: endpoints)
     end
 
     private

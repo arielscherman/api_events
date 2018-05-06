@@ -14,6 +14,7 @@ end
 
 module ApiEvents
   class Engine < Rails::Engine
+    isolate_namespace ApiEvents
   end
 
   class << self

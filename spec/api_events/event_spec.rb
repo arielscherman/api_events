@@ -6,7 +6,7 @@ RSpec.describe ApiEvents::Event do
       ApiEvents.configuration.listeners = ["http://my-endpoint.com/"]
 
       expect(ApiEvents::Request).to receive(:new).with(:foo_created, { foo: :bar }).and_return(stub_request)
-      expect(stub_request).to       receive(:trigger!).with(endpoints: ["http://my-endpoint.com/"])
+      expect(stub_request).to       receive(:trigger!).with(urls: ["http://my-endpoint.com/"])
 
       described_class.new(model, :created).broadcast!
     end
