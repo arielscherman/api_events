@@ -10,7 +10,7 @@ class ApiEvents::Request
 
   def trigger!(urls:)
     endpoints(urls).each do |endpoint|
-      self.class.post(endpoint.path, params)
+      self.class.post(endpoint.path, body: params)
     end
   end
 
