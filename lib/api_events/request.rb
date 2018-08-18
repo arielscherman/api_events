@@ -27,5 +27,3 @@ class ApiEvents::Request
     [urls].flatten.map { |url| Endpoint.new(url) }
   end
 end
-
-require "api_events/request/endpoint"

@@ -3,6 +3,7 @@ require "api_events/configuration"
 require "api_events/event"
 require "api_events/model"
 require "api_events/request"
+require "api_events/request/endpoint"
 
 require "rails"
 require "active_record"
